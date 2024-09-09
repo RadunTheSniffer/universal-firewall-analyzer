@@ -1,6 +1,10 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+import pandas as pd
+import io
+
+
 
 app = FastAPI()
 
@@ -19,4 +23,10 @@ def render_dashboard(request: Request):
     ]
     return templates.TemplateResponse("dashboard.html", {"request": request, "tasks": tasks})
 
-
+# Endpoint to handle CSV file upload
+@app.post("/upload/")
+async def upload_file(request: Request, file: UploadFile = File(...)):
+    content = await file.read()
+    df = pd.read_csv(io.StringIO(content.decode("utf-8")))
+    tasks = df.to_dict(orient="records")
+    return templates.TemplateResponse("dashboard.html", {"request": request, "tasks": tasks})
