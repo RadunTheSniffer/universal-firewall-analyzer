@@ -2,7 +2,21 @@
 <html>
 <head>
 <title>Worker Efficiency Dashboard</title>
-<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/styles.css">
+<script>
+    function calculateEfficiency() {
+    const rows = document.querySelectorAll("#task-table-body tr");
+    const efficiencies = [];
+    rows.forEach(row => {
+        const timeTaken = parseFloat(row.cells[1].innerText);
+        const difficulty = parseFloat(row.cells[2].innerText);
+        const efficiency = timeTaken / difficulty;
+        row.cells[3].innerText = efficiency.toFixed(2);
+        efficiencies.push(efficiency)
+    });
+    alert("The efficiencies are: " + efficiencies.join(", "));
+}
+</script>
 </head>
 <body>
 <h1>Task Dashboard</h1>
@@ -24,5 +38,6 @@
         {% endfor %}
     </tbody>
 </table>
+<button onclick="calculateEfficiency()">Calculate Efficiency</button>
 </body>
 </html>
