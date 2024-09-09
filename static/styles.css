@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+table{
+    width: 100%;
+    border-collapse: colapse;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th{
+    background-color: aliceblue;
+}
