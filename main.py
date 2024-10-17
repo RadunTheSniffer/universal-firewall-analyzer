@@ -30,3 +30,5 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
     df = pd.read_csv(io.StringIO(content.decode("utf-8")))
     tasks = df.to_dict(orient="records")
     return templates.TemplateResponse("dashboard.html", {"request": request, "tasks": tasks})
+
+
