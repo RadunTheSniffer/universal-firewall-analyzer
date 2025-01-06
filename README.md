@@ -9,7 +9,7 @@ The process will be to parse through firewall logs and match the logs with said 
 
 The starting code is like this
 
----python
+'''python
 import re
 logs = [
     "2025-01-01 12:00:00 ACCEPT src=192.168.0.1 dst=10.0.0.1 proto=TCP sport=12345 dport=80",
@@ -37,4 +37,4 @@ for log in logs:
   parsed_logs.append(parsed_data)
   print(parsed_data)
 #print(parsed_logs)
----
+'''
